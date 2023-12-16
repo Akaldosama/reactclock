@@ -81,20 +81,34 @@ export default class App extends Component {
   // }
 
   minusHour = () => {
+    const {minutes, hour} = this.state
     this.setState({
       hour: this.state.hour - 1,
     });
+    if(hour === 0){
+      this.setState({
+        minutes: minutes - 1,
+        hour: 0
+      })
+    }
   };
   plusHour = () => {
     this.setState({
       hour: this.state.hour + 1,
     });
   };
-
+  
   minusMinute = () => {
+    const {minutes, second} = this.state
     this.setState({
       minute: this.state.minute - 1,
     });
+    if(minutes === 0){
+      this.setState({
+        second: second - 1,
+        minutes: 0
+      })
+    }
   };
   plusMinute = () => {
     this.setState({
@@ -103,9 +117,15 @@ export default class App extends Component {
   };
 
   minusSecond = () => {
+    const {second} = this.state
     this.setState({
       second: this.state.second - 1,
     });
+    if(second === 0){
+      this.setState({
+        second: 0
+      })
+    }
   };
   plusSecond = () => {
     this.setState({
@@ -143,7 +163,7 @@ export default class App extends Component {
           second: second - 1,
         });
       }
-    }, 100);
+    }, 1000);
     this.setState({
       intervalInStartHolder: intervalInStart,
     });
